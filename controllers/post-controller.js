@@ -66,7 +66,7 @@ export const updatePost =async(req,res)=>{
 
   }
   catch(error){
-    return res.stautus(400).json({message:error.message});
+    return res.status(400).json({message:error.message});
   }
 }
 
@@ -80,7 +80,7 @@ export const deletePost =async(req,res)=>{
       return res.status(200).json({message:"message successfully deleted"});
   }
   catch(error){
-     return res.stautus(400).json({message:error.message});
+     return res.status(400).json({message:error.message});
   }
 }
 
