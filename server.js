@@ -17,6 +17,9 @@ app.use('/',Router);
 
 dotenv.config()
 
+app.get('/hello',(req,res)=>{
+    res.send("hello world");
+})
 
 // if(process.env.NODE_ENV === 'production'){
 //     app.use(express.static('client1/build'))
