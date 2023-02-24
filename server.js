@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import Router from './routes/route.js';
 import cors from 'cors';
 import bodyParser from 'body-parser'
+import mongoose from 'mongoose';
+mongoose.set('strictQuery', true);
+
 
 const app=express();
 const PORT=process.env.PORT ||8000;
@@ -30,5 +33,9 @@ const USERPASSWORD=process.env.DB_USERPASSWORD;
 
 const URL=process.env.MONGODB_URI || `mongodb+srv://${USERNAME}:${USERPASSWORD}@cluster0.r5lt5ic.mongodb.net/blogapp?retryWrites=true&w=majority`;
 
-app.listen(PORT, ()=>{console.log(`Connection connect successfully at PORT : ${PORT}`)});
+
+
+
+
+app.listen(PORT, ()=>{console.log(`Connection connect successfully at PORT : ${PORT}`)})
 Connection(URL);
