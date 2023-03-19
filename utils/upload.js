@@ -1,11 +1,11 @@
-// import multer  from 'multer'
-// import { GridFsStorage} from 'multer-gridfs-storage'
-// import dotenv from 'dotenv'
+import multer  from 'multer'
+import { GridFsStorage} from 'multer-gridfs-storage'
+import dotenv from 'dotenv'
 
-// dotenv.config();
+dotenv.config();
 
-// const username=process.env.DB_USERNAME;
-// const userpassword=process.env.DB_PASSWORD;
+const username=process.env.DB_USERNAME;
+const userpassword=process.env.DB_PASSWORD;
 
 // const storage =new GridFsStorage({
    
@@ -27,3 +27,24 @@
 // })
 
 // export default multer({storage});
+
+const storage =new GridFsStorage({
+   
+    url:`mongodb+srv://prathvi:87654321@cluster0.r5lt5ic.mongodb.net/blogapp?retryWrites=true&w=majority`,
+    options : {useNewUrlParser : true},
+    file : (request,file) => {
+      
+        const match = ['image/png','image/jpeg','image/pdf','image/jpg'];
+       
+        if(match.indexOf(file.memeType)===-1){
+           
+            return `${Date.now()}-iiitdm-${file.originalname}`
+        }
+        return {
+            bucketName:"photos",
+            filname:`${Date.now()}-iiitdm-${file.originalname}`
+        }
+    }
+})
+
+export default multer({storage});

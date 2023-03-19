@@ -56,7 +56,7 @@ export const getPost =async(req,res)=>{
 export const updatePost =async(req,res)=>{
   try{
      const post= await POST.findById(req.params.id);
-
+          console.log("mai bhi upadte mai hi hu per server mai",post);       
      if(!post){
        return res.status(404).json({message:"post is not find"});
      }

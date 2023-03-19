@@ -13,6 +13,10 @@ const commentSchema = mongoose.Schema({
     date:{
         type:Date,
         required:true
+    },
+    comment:{
+      type:String,
+      required:true
     }
 
 })

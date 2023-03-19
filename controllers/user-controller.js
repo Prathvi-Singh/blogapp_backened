@@ -29,6 +29,8 @@ export const signupUser = async(req,res)=>{
 // export default signupUser
 
 export const loginUser = async(req,res)=>{
+   
+
    const user=await User.findOne({email:req.body.email})
   
  
@@ -38,23 +40,23 @@ export const loginUser = async(req,res)=>{
    }
 
    try{
+
+     // var password=req.body.password;
+
+     // if(password.length<8) res.status(400).json({message:"Password must be at least 8 character or digit"})
      
       const match=await bcrypt.compare(req.body.password,user.password);
      
       if(match){
        
-    
-     
-
-      const accessToken = jwt.sign(user.toJSON(),process.env.ACCESS_KEY,{expiresIn:'15m'})
+       const accessToken = jwt.sign(user.toJSON(),process.env.ACCESS_KEY,{expiresIn:'15m'})
        const refreshToken = jwt.sign(user.toJSON(),process.env.REFRESH_KEY);
-     
-      
+  
     
        const newToken =new Token({token:refreshToken});
        await newToken.save();
     
-    res.status(200).json({accessToken:accessToken,refreshToken:refreshToken,email:user.email,name:user.name});
+        res.status(200).json({accessToken:accessToken,refreshToken:refreshToken,email:user.email,name:user.name});
 
       }
       else{
