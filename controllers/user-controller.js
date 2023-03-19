@@ -56,7 +56,7 @@ export const loginUser = async(req,res)=>{
        const newToken =new Token({token:refreshToken});
        await newToken.save();
     
-        res.status(200).json({accessToken:accessToken,refreshToken:refreshToken,email:user.email,name:user.name});
+        res.status(200).json({accessToken:accessToken,refreshToken:refreshToken,email:user.email,name:user.name,id:user._id});
 
       }
       else{
