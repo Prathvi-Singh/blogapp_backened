@@ -8,7 +8,8 @@ import Token from '../models/token.js'
 dotenv.config();
 
 export const signupUser = async(req,res)=>{
-     // console.log(res.data)
+   const user=await User.findOne({email:req.body.email})
+   if(user) return  res.status(200).json({message:"duplicate"});
     try{
        
       
